@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\ItkUtils.cpp" />
     <ClCompile Include="src\Extensions.cpp" />
     <ClCompile Include="src\Handlers.cpp" />
     <ClCompile Include="src\Main.cpp" />
@@ -26,6 +27,8 @@
   <ItemGroup>
     <ClInclude Include="include\Extensions.h" />
     <ClInclude Include="include\Handlers.h" />
+    <ClInclude Include="include\ItkHelpers.hxx" />
+    <ClInclude Include="include\ItkUtils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -20,12 +20,21 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="include\ItkUtils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Extensions.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Handlers.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ItkHelpers.hxx">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ItkUtils.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
