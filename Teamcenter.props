@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  
+  <PropertyGroup Label="UserMacros">
+	<!-- PROJECT SETTINGS -->
+	<CLIENT_PREFIX>ITK_</CLIENT_PREFIX>
+    <TC_VERSION Condition="'$(TC_VERSION)' == ''">2412</TC_VERSION>
+	
+	<!-- PATH RESOLUTION -->
+    <TC_ROOT_DIR Condition="'$(TC_ROOT)' != ''">$(TC_ROOT)</TC_ROOT_DIR>
+    <TC_ROOT_DIR Condition="'$(TC_ROOT)' == ''">$(DEV_DEPENDENCIES)\Teamcenter\TC$(TC_VERSION)</TC_ROOT_DIR>
+  </PropertyGroup>
+
+  <!-- OUTPUT FOLDERS -->
+  <PropertyGroup>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(TC_VERSION)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(Configuration)\$(TC_VERSION)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+
+  <!-- COMPILATION AND LIBS CONFIG -->
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(TC_ROOT_DIR)\include;$(TC_ROOT_DIR)\include_cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>IPPR_EXPORTS;ITK_EXE;WIN32;_WIN64;CLIENT_PREFIX=$(CLIENT_PREFIX);TC_VERSION=$(TC_VERSION);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    
+    <Link>
+      <AdditionalLibraryDirectories>$(TC_ROOT_DIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(TC_ROOT_DIR)\lib\*.lib;crypt32.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <!-- ENVIRONMENT VALIDATION -->
+  <Target Name="CheckEnvironment" BeforeTargets="PrepareForBuild">
+    <Error Condition="'$(TC_ROOT)' == '' And '$(DEV_DEPENDENCIES)' == ''" 
+           Text="ERROR: Neither TC_ROOT nor DEV_DEPENDENCIES environment variables were found." />
+    <Message Importance="high" Text="*** Building with TC_ROOT_DIR: $(TC_ROOT_DIR) (Version: $(TC_VERSION)) ***" />
+  </Target>
+
+  <ItemGroup>
+    <BuildMacro Include="CLIENT_PREFIX"><Value>$(CLIENT_PREFIX)</Value></BuildMacro>
+    <BuildMacro Include="TC_VERSION"><Value>$(TC_VERSION)</Value></BuildMacro>
+	<BuildMacro Include="TC_ROOT_DIR"><Value>$(TC_ROOT_DIR)</Value></BuildMacro>
+  </ItemGroup>
+</Project>
