@@ -1,1 +1,80 @@
 #pragma once
+
+#include <exception>
+#include <memory>
+#include <string>
+
+#include <base_utils/ScopedSmPtr.hxx>
+#include <tc/emh.h>
+
+#define STR(x) #x
+#define STRINGIFY(x) STR(x)
+
+/* Use CLIENT_PREFIX from props as log identifier */
+#ifndef LOG_PREFIX
+#ifdef CLIENT_PREFIX
+#define LOG_PREFIX "[" STRINGIFY(CLIENT_PREFIX) "]"
+#else
+#define LOG_PREFIX "[ITK]"
+#endif
+#endif
+
+/* EMH generic error used to bypass internationalization and show custom text. */
+#define ITK_CUSTOM_ERROR 2011
+
+namespace itk
+{
+class Exception : public std::exception
+{
+private:
+    int m_status;
+    std::string m_message;
+
+public:
+    Exception(int status, const std::string& message) : m_status(status), m_message(message) {}
+    int GetStatus() const { return m_status; }
+    const char* what() const noexcept override { return m_message.c_str(); }
+};
+
+/* Alias to use the official Teamcenter smart pointer. */
+template <typename T> using Ptr = Teamcenter::scoped_smptr<T>;
+} // namespace itk
+
+/* @brief Executes an ITK function and throws itk::Exception on failure. */
+#define TC_CALL(X)                                                                                                     \
+    {                                                                                                                  \
+        int _stat = (X);                                                                                               \
+        if (_stat != ITK_ok)                                                                                           \
+        {                                                                                                              \
+            itk::Ptr<char> _errText;                                                                                   \
+            EMH_ask_error_text(_stat, &_errText);                                                                      \
+            std::string _msg = (_errText != nullptr) ? _errText.get() : "Unknown ITK Error";                           \
+            TC_write_syslog("%s ERROR: %d - %s (%s:%d)\n", LOG_PREFIX, _stat, _msg.c_str(), __FILE__, __LINE__);       \
+            throw itk::Exception(_stat, _msg);                                                                         \
+        }                                                                                                              \
+    }
+
+/* @brief Throws an itk::Exception and stores the error in EMH. */
+#define TC_REPORT(MSG)                                                                                                 \
+    {                                                                                                                  \
+        EMH_store_error_s1(EMH_severity_error, ITK_CUSTOM_ERROR, MSG);                                                 \
+        TC_write_syslog("%s ERROR: %s\n", LOG_PREFIX, MSG);                                                            \
+        throw itk::Exception(ITK_CUSTOM_ERROR, MSG);                                                                   \
+    }
+
+/* @brief Top-level catch block for ITK functions. */
+#define TC_CATCH(DEFAULT_STAT)                                                                                         \
+    catch (const itk::Exception& e)                                                                                    \
+    {                                                                                                                  \
+        return e.GetStatus();                                                                                          \
+    }                                                                                                                  \
+    catch (const std::exception& e)                                                                                    \
+    {                                                                                                                  \
+        TC_write_syslog("%s CPP EXCEPTION: %s\n", LOG_PREFIX, e.what());                                               \
+        return DEFAULT_STAT;                                                                                           \
+    }                                                                                                                  \
+    catch (...)                                                                                                        \
+    {                                                                                                                  \
+        TC_write_syslog("%s UNKNOWN EXCEPTION\n", LOG_PREFIX);                                                         \
+        return DEFAULT_STAT;                                                                                           \
+    }

@@ -5,7 +5,7 @@
   <PropertyGroup Label="UserMacros">
 	<!-- PROJECT SETTINGS -->
 	<CLIENT_PREFIX>ITK_</CLIENT_PREFIX>
-    <TC_VERSION Condition="'$(TC_VERSION)' == ''">2412</TC_VERSION>
+    <TC_VERSION Condition="'$(TC_VERSION)' == ''">2512</TC_VERSION>
 	
 	<!-- PATH RESOLUTION -->
     <TC_ROOT_DIR Condition="'$(TC_ROOT)' != ''">$(TC_ROOT)</TC_ROOT_DIR>
