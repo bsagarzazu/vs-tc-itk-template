@@ -21,7 +21,7 @@
   <!-- COMPILATION AND LIBS CONFIG -->
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(TC_ROOT_DIR)\include;$(TC_ROOT_DIR)\include_cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(TC_ROOT_DIR)\include;$(TC_ROOT_DIR)\include_cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>IPPR_EXPORTS;ITK_EXE;WIN32;_WIN64;CLIENT_PREFIX=$(CLIENT_PREFIX);TC_VERSION=$(TC_VERSION);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
