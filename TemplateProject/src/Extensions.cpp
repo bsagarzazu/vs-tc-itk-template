@@ -1,0 +1,51 @@
+#include "Extensions.h"
+#include "ItkHelpers.hxx"
+
+#include <tccore/method.h>
+
+struct ExtensionDefinition
+{
+    const char* typeName;       // e.g., "Item"
+    const char* methodName;     // e.g., "IMAN_save"
+    METHOD_action_type_t phase; // e.g., METHOD_pre_action_type
+    METHOD_function_t function;
+};
+
+#define EXTENSION_ENTRY(type, method, phase, function) {type, method, phase, (METHOD_function_t) (function)}
+
+static ExtensionDefinition extension_registry[] = {
+    EXTENSION_ENTRY("Item", "IMAN_save", METHOD_pre_action_type, pre_save_item_action)};
+
+void RegisterExtensions()
+{
+    for (const auto& ext : extension_registry)
+    {
+        METHOD_id_t method;
+
+        TC_CALL(METHOD_find_method(ext.typeName, ext.methodName, &method));
+        if (method.id != nullptr)
+        {
+            TC_CALL(METHOD_add_action(method, ext.phase, ext.function, nullptr));
+            TC_write_syslog("%s Registered extension: %s on %s (%d)\n", LOG_PREFIX, ext.methodName, ext.typeName,
+                            ext.phase);
+        }
+        else
+        {
+            TC_write_syslog("%s WARNING: Method %s not found on type %s\n", LOG_PREFIX, ext.methodName, ext.typeName);
+        }
+    }
+}
+
+/* Extension name: [phase]_[method]_[type]_action */
+int pre_save_item_action(METHOD_message_t* msg, va_list args)
+{
+    try
+    {
+        TC_write_syslog("%s Running %s...\n", LOG_PREFIX, __FUNCTION__);
+
+        // Business logic here...
+
+        return ITK_ok;
+    }
+    TC_CATCH(ITK_ok)
+}
