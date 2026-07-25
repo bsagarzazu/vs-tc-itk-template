@@ -20,5 +20,5 @@
 
 void RegisterHandlers();
 
-int action_handler_name(EPM_action_message_t message);
-EPM_decision_t rule_handler_name(EPM_rule_message_t message);
+int action_handler_name(EPM_action_message_t msg);
+EPM_decision_t rule_handler_name(EPM_rule_message_t msg);
