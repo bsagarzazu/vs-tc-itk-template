@@ -1,36 +1,39 @@
 # vs-tc-itk-template
 
-A straightforward Visual Studio project template for Teamcenter ITK projects.
+A straightforward Visual Studio project template for Teamcenter ITK projects. 
+
+No more copy-pasting, renaming and fixing paths from old projects. Setup a clean, ready-to-go ITK project in seconds.
 
 ## Features
 
-- **OOTB helpers**: Simplified error handling, RAII memory management, and `std::map` based handler argument parsing.
-- **Table-driven registration**: Easily manage workflow handlers and extensions via static tables.
-- **Seamless version migration**: Seamlessly change Teamcenter version dependencies in one place.
-- **Dependencies path resolution**: Automatic dependency detection for local development or server environments.
-- **Code quality**: Pre-configured `Clang-Format` and `Clang-Tidy`.
-- **Dynamic headers**: Automated license and project information headers using VS template variables. 
+- **OOTB helpers**: Ready-to-use macros for error handling, RAII memory management using official `scoped_smptr`, and `std::map` based handler argument parsing.
+- **Table-driven registration**: Easily manage workflow handlers and extensions via clean, centralized static tables.
+- **Seamless version migration**: Change Teamcenter version dependencies in a single place within the Property Sheet.
+- **Hybrid path resolution**: Automatic dependency detection for local development or server environments.
+- **Dynamic headers**: Automated license and project information headers using Visual Studio template variables. 
+- **Code quality**: Pre-configured `Clang-Format` and `Clang-Tidy` configured to ignore third-party headers.
+
+>**Note**: Analysis is set to manual mode in the Property Sheet to maintain build performance. Run it on-demand via *Analyze -> Run Code Analysis*.
 
 ## Project Structure
 
 - `include/`: Helper macros, memory management, and utility headers.
-- `src/`: Registration logic, implementations, and DLL entry point.
+- `src/`: Registration logic, implementations, and DLL entry point (`Main.cpp`).
 - `Teamcenter.props`: Centralized configuration for paths, libraries, and compiler flags.
 
 ## Project Configuration
 
-Edit `Teamcenter.props` to set your `CLIENT_PREFIX` and `TC_VERSION`.
-
-The template relies on environment variables to resolve Teamcenter paths:
-- **Server**: Uses `TC_ROOT`.
-- **Local**: Uses `DEV_DEPENDENCIES`, expecting `$(DEV_DEPENDENCIES)\Teamcenter\TC$(TC_VERSION)` containing the `include`, `include_cpp`, and `lib` directories.
+1. Edit `Teamcenter.props` to set your `CLIENT_PREFIX` and `TC_VERSION`.
+2. The template relies on environment variables to resolve Teamcenter paths:
+	- **Server**: Uses `TC_ROOT`.
+	- **Local**: Uses `DEV_DEPENDENCIES`, expecting `$(DEV_DEPENDENCIES)\Teamcenter\TC$(TC_VERSION)` containing `include`, `include_cpp`, and `lib` directories.
 
 ## Usage
 
 1. Download `vs-tc-itk-template` from [the latest Release](releases/latest).
 2. Place the ZIP file in your Visual Studio project templates folder:
-   `%USERPROFILE%\Documents\Visual Studio 2022\Templates\ProjectTemplates`
-3. Open Visual Studio, create a **New Project**, and search for "Teamcenter ITK Project".
+`%USERPROFILE%\Documents\Visual Studio 2022\Templates\ProjectTemplates`
+3. Open Visual Studio, create a *New Project*, and search for *Teamcenter ITK Project*.
 
 ## License
 
