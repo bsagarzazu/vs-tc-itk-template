@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   
   <PropertyGroup Label="UserMacros">
-	<!-- PROJECT SETTINGS -->
+	<!-- USER VARIABLES -->
 	<CLIENT_PREFIX>ITK_</CLIENT_PREFIX>
     <TC_VERSION Condition="'$(TC_VERSION)' == ''">2512</TC_VERSION>
 	
@@ -12,25 +12,39 @@
     <TC_ROOT_DIR Condition="'$(TC_ROOT)' == ''">$(DEV_DEPENDENCIES)\Teamcenter\TC$(TC_VERSION)</TC_ROOT_DIR>
   </PropertyGroup>
 
-  <!-- OUTPUT FOLDERS -->
+  <!-- PROJECT CONFIGURATION -->
   <PropertyGroup>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(TC_VERSION)\</OutDir>
     <IntDir>$(SolutionDir)obj\$(Configuration)\$(TC_VERSION)\$(ProjectName)\</IntDir>
+	
+	<UseClangFormat>true</UseClangFormat>
+	<RunCodeAnalysis>false</RunCodeAnalysis>
+	<EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
+    <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>  
   </PropertyGroup>
-
-  <!-- COMPILATION AND LIBS CONFIG -->
+  
+  <!-- COMPILER SETTINGS -->
   <ItemDefinitionGroup>
     <ClCompile>
+	  <MultiProcessorCompilation>true</MultiProcessorCompilation>
+	  <LanguageStandard>stdcpp17</LanguageStandard>
+	  
       <AdditionalIncludeDirectories>$(ProjectDir)\include;$(TC_ROOT_DIR)\include;$(TC_ROOT_DIR)\include_cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>IPLIB=none;WIN32;CLIENT_PREFIX=$(CLIENT_PREFIX);TC_VERSION=$(TC_VERSION);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <WarningLevel>Level3</WarningLevel>
+      
+	  <RuntimeLibrary Condition="'$(Configuration)' == 'Debug'">MultiThreadedDebugDLL</RuntimeLibrary>
+	  <RuntimeLibrary Condition="'$(Configuration)' != 'Debug'">MultiThreadedDLL</RuntimeLibrary>
+      
+	  <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     
     <Link>
       <AdditionalLibraryDirectories>$(TC_ROOT_DIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(TC_ROOT_DIR)\lib\*.lib;crypt32.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+	  
+	  <GenerateDebugInformation Condition="'$(Configuration)' == 'Debug'">true</GenerateDebugInformation>
+      <GenerateDebugInformation Condition="'$(Configuration)' != 'Debug'">false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
 
@@ -41,6 +55,7 @@
     <Message Importance="high" Text="*** Building with TC_ROOT_DIR: $(TC_ROOT_DIR) (Version: $(TC_VERSION)) ***" />
   </Target>
 
+  <!-- EXPORT MACROS TO VS INTERFACE -->
   <ItemGroup>
     <BuildMacro Include="CLIENT_PREFIX"><Value>$(CLIENT_PREFIX)</Value></BuildMacro>
     <BuildMacro Include="TC_VERSION"><Value>$(TC_VERSION)</Value></BuildMacro>
