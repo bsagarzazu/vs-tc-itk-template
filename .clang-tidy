@@ -2,7 +2,7 @@ Checks: >
   -*, bugprone-*, performance-*, readability-*, modernize-use-nullptr,
   -readability-braces-around-statements, -readability-identifier-naming
 WarningsAsErrors: ''
-HeaderFilterRegex: ^(include|src)/
+HeaderFilterRegex: '.*(ItkHelpers|ItkUtils|Handlers|Extensions|Main).*'
 CheckOptions:
   - key: modernize-use-nullptr.NullMacros
     value: 'NULL,NULLTAG'
