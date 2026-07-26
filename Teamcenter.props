@@ -19,6 +19,7 @@
 	
 	<UseClangFormat>true</UseClangFormat>
 	<RunCodeAnalysis>false</RunCodeAnalysis>
+	<RunClangTidy>false</RunClangTidy>
 	<EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>  
   </PropertyGroup>
