@@ -30,6 +30,14 @@
     <ClInclude Include="include\ItkHelpers.hxx" />
     <ClInclude Include="include\ItkUtils.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.clang-format" />
+    <None Include="..\.clang-tidy" />
+    <None Include="..\.editorconfig" />
+    <None Include="..\LICENSE" />
+    <None Include="..\README.md" />
+    <None Include="..\Teamcenter.props" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
