@@ -20,7 +20,7 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="include\ItkUtils.cpp">
+    <ClCompile Include="src\ItkUtils.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
