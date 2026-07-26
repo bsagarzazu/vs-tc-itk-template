@@ -31,9 +31,6 @@
     <ClInclude Include="include\ItkUtils.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\.clang-format" />
-    <None Include="..\.clang-tidy" />
-    <None Include="..\.editorconfig" />
     <None Include="..\Teamcenter.props" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
