@@ -1,0 +1,20 @@
+<svg viewBox="20 47 460 460" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://googleapis.com');
+      
+      .text {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 200px;          
+        font-weight: 650;          
+        fill: #FFFFFF;
+        text-anchor: middle;       
+        dominant-baseline: central;  
+        letter-spacing: -0.05em;  
+      }
+    </style>
+  </defs>
+
+  <rect x="20" y="47" width="460" height="460" fill="#00997F" />
+  <text x="250" y="277" class="text">ITK</text>
+</svg>
