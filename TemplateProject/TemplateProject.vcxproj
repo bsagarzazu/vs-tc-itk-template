@@ -34,8 +34,6 @@
     <None Include="..\.clang-format" />
     <None Include="..\.clang-tidy" />
     <None Include="..\.editorconfig" />
-    <None Include="..\LICENSE" />
-    <None Include="..\README.md" />
     <None Include="..\Teamcenter.props" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
