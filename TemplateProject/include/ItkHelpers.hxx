@@ -3,14 +3,14 @@
  *  Copyright (c) 2026 Beñat Sagarzazu
  *  Available at GitHub under the Boost Software License, Version 1.0.
  ******************************************************************************
- *  COMPANY:     $registeredorganization$
+ *  COMPANY:     [COMPANY]
  *  PROJECT:     $projectname$
- *  FILENAME:    $targetfilename$
- *  AUTHOR:      $username$
+ *  FILENAME:    ItkHelpers.hxx
+ *  AUTHOR:      [AUTHOR]
  *  CREATED:     $date$
  *  -------------------------------------------------------------------------
- *  COPYRIGHT (C) $year$ $registeredorganization$. ALL RIGHTS RESERVED.
- *  CONFIDENTIAL: This software is the sole property of $registeredorganization$.
+ *  COPYRIGHT (C) $year$ [COMPANY]. ALL RIGHTS RESERVED.
+ *  CONFIDENTIAL: This software is the sole property of [COMPANY].
  *  Any reproduction or distribution without permission is prohibited.
  *****************************************************************************/
 
