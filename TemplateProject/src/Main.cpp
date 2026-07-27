@@ -7,7 +7,7 @@
  *  PROJECT:     $projectname$
  *  FILENAME:    Main.cpp
  *  AUTHOR:      [AUTHOR]
- *  CREATED:     $date$
+ *  CREATED:     $time$
  *  -------------------------------------------------------------------------
  *  COPYRIGHT (C) $year$ [COMPANY]. ALL RIGHTS RESERVED.
  *  CONFIDENTIAL: This software is the sole property of [COMPANY].
