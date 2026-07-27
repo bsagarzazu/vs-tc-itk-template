@@ -36,7 +36,7 @@ int InitModule(int* decision, va_list args)
     TC_CATCH(ITK_ok)
 }
 
-extern "C" DLLAPI int $projectname$_register_callbacks()
+extern "C" DLLAPI int $safeprojectname$_register_callbacks()
 {
     try
     {
