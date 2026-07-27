@@ -1,4 +1,4 @@
-# <img src="assets/icon.svg" width="48" style="vertical-align: middle; margin-right: 10px;"> vs-tc-itk-template
+# <a href="#"><img src="assets/banner.svg" width="240"></a>
 
 A straightforward Visual Studio project template for Teamcenter ITK projects.
 
