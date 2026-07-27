@@ -27,6 +27,7 @@
   <!-- COMPILER SETTINGS -->
   <ItemDefinitionGroup>
     <ClCompile>
+	  <PrecompiledHeader>NotUsing</PrecompiledHeader>
 	  <MultiProcessorCompilation>true</MultiProcessorCompilation>
 	  <LanguageStandard>stdcpp17</LanguageStandard>
 	  
