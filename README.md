@@ -33,7 +33,7 @@ No more copy-pasting, renaming and fixing paths from old projects. Setup a clean
 
 ## Usage
 
-1. Download `vs-tc-itk-template` from [the latest Release](releases/latest).
+1. Download `vs-tc-itk-template` from [the latest Release](https://github.com/bsagarzazu/vs-tc-itk-template/releases/latest).
 2. Place the ZIP file in your Visual Studio project templates folder:
    `%USERPROFILE%\Documents\Visual Studio 2022\Templates\ProjectTemplates`
 3. Open Visual Studio, create a _New Project_, and search for _Teamcenter ITK Project_.
