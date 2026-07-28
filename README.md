@@ -1,4 +1,7 @@
 # <a href="#"><img src="assets/banner.svg" width="240"></a>
+![Release](https://img.shields.io/github/v/release/bsagarzazu/vs-tc-itk-template)
+![Downloads](https://img.shields.io/github/downloads/bsagarzazu/vs-tc-itk-template/total)
+![License](https://img.shields.io/github/license/bsagarzazu/vs-tc-itk-template)
 
 A straightforward Visual Studio project template for Teamcenter ITK projects.
 
@@ -34,6 +37,7 @@ No more copy-pasting, renaming and fixing paths from old projects. Setup a clean
 2. Place the ZIP file in your Visual Studio project templates folder:
    `%USERPROFILE%\Documents\Visual Studio 2022\Templates\ProjectTemplates`
 3. Open Visual Studio, create a _New Project_, and search for _Teamcenter ITK Project_.
+4. Set your `CLIENT_PREFIX` and `TC_VERSION` in `Teamcenter.props` and replace all the occurrences of `[AUTHOR]` and `[COMPANY]` in the license headers with your data.
 
 ## License
 
