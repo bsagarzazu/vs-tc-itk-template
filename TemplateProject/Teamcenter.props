@@ -4,7 +4,7 @@
   
   <PropertyGroup Label="UserMacros">
 	  <!-- USER VARIABLES -->
-	  <CLIENT_PREFIX>ITK_</CLIENT_PREFIX>
+	  <CLIENT_PREFIX>ITK</CLIENT_PREFIX>
     <TC_VERSION Condition="'$(TC_VERSION)' == ''">2512</TC_VERSION>
     <PlatformToolset>v142</PlatformToolset>
 

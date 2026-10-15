@@ -48,13 +48,13 @@ void RegisterHandlers()
 
     for (const auto& action : action_handler_registry)
     {
-        std::string fullName = prefix + action.name;
+        std::string fullName = prefix + "_" + action.name;
         TC_CALL(EPM_register_action_handler(fullName.c_str(), action.description, action.function))
     }
 
     for (const auto& rule : rule_handler_registry)
     {
-        std::string fullName = prefix + rule.name;
+        std::string fullName = prefix + "_" + rule.name;
         TC_CALL(EPM_register_rule_handler(fullName.c_str(), rule.description, rule.function))
     }
 }
