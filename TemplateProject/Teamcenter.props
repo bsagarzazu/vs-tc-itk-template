@@ -3,11 +3,12 @@
   <ImportGroup Label="PropertySheets" />
   
   <PropertyGroup Label="UserMacros">
-	<!-- USER VARIABLES -->
-	<CLIENT_PREFIX>ITK_</CLIENT_PREFIX>
+	  <!-- USER VARIABLES -->
+	  <CLIENT_PREFIX>ITK_</CLIENT_PREFIX>
     <TC_VERSION Condition="'$(TC_VERSION)' == ''">2512</TC_VERSION>
-	
-	<!-- PATH RESOLUTION -->
+    <PlatformToolset>v142</PlatformToolset>
+
+	  <!-- PATH RESOLUTION -->
     <TC_ROOT_DIR Condition="'$(TC_ROOT)' != ''">$(TC_ROOT)</TC_ROOT_DIR>
     <TC_ROOT_DIR Condition="'$(TC_ROOT)' == ''">$(DEV_DEPENDENCIES)\Teamcenter\TC$(TC_VERSION)</TC_ROOT_DIR>
   </PropertyGroup>
@@ -17,27 +18,27 @@
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(TC_VERSION)\</OutDir>
     <IntDir>$(SolutionDir)obj\$(Configuration)\$(TC_VERSION)\$(ProjectName)\</IntDir>
 	
-	<UseClangFormat>true</UseClangFormat>
-	<RunCodeAnalysis>false</RunCodeAnalysis>
-	<RunClangTidy>false</RunClangTidy>
-	<EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
+    <UseClangFormat>true</UseClangFormat>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <RunClangTidy>false</RunClangTidy>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>  
   </PropertyGroup>
   
   <!-- COMPILER SETTINGS -->
   <ItemDefinitionGroup>
     <ClCompile>
-	  <PrecompiledHeader>NotUsing</PrecompiledHeader>
-	  <MultiProcessorCompilation>true</MultiProcessorCompilation>
-	  <LanguageStandard>stdcpp17</LanguageStandard>
-	  
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      
       <AdditionalIncludeDirectories>$(ProjectDir)\include;$(TC_ROOT_DIR)\include;$(TC_ROOT_DIR)\include_cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>IPLIB=none;WIN32;CLIENT_PREFIX=$(CLIENT_PREFIX);TC_VERSION=$(TC_VERSION);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      
-	  <RuntimeLibrary Condition="'$(Configuration)' == 'Debug'">MultiThreadedDebugDLL</RuntimeLibrary>
-	  <RuntimeLibrary Condition="'$(Configuration)' != 'Debug'">MultiThreadedDLL</RuntimeLibrary>
-      
-	  <WarningLevel>Level3</WarningLevel>
+        
+      <RuntimeLibrary Condition="'$(Configuration)' == 'Debug'">MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary Condition="'$(Configuration)' != 'Debug'">MultiThreadedDLL</RuntimeLibrary>
+        
+      <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     
     <Link>
@@ -45,7 +46,7 @@
       <AdditionalDependencies>$(TC_ROOT_DIR)\lib\*.lib;crypt32.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
 	  
-	  <GenerateDebugInformation Condition="'$(Configuration)' == 'Debug'">true</GenerateDebugInformation>
+	    <GenerateDebugInformation Condition="'$(Configuration)' == 'Debug'">true</GenerateDebugInformation>
       <GenerateDebugInformation Condition="'$(Configuration)' != 'Debug'">false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -61,6 +62,6 @@
   <ItemGroup>
     <BuildMacro Include="CLIENT_PREFIX"><Value>$(CLIENT_PREFIX)</Value></BuildMacro>
     <BuildMacro Include="TC_VERSION"><Value>$(TC_VERSION)</Value></BuildMacro>
-	<BuildMacro Include="TC_ROOT_DIR"><Value>$(TC_ROOT_DIR)</Value></BuildMacro>
+	  <BuildMacro Include="TC_ROOT_DIR"><Value>$(TC_ROOT_DIR)</Value></BuildMacro>
   </ItemGroup>
 </Project>
