@@ -58,7 +58,7 @@ template <typename T> using Ptr = Teamcenter::scoped_smptr<T>;
 
 /* @brief Executes an ITK function and throws itk::Exception on failure. */
 #define TC_CALL(X)                                                                                                     \
-    {                                                                                                                  \
+    do {                                                                                                               \
         int _stat = (X);                                                                                               \
         if (_stat != ITK_ok)                                                                                           \
         {                                                                                                              \
@@ -68,15 +68,25 @@ template <typename T> using Ptr = Teamcenter::scoped_smptr<T>;
             TC_write_syslog("%s ERROR: %d - %s (%s:%d)\n", LOG_PREFIX, _stat, _msg.c_str(), __FILE__, __LINE__);       \
             throw itk::Exception(_stat, _msg);                                                                         \
         }                                                                                                              \
-    }
-
+    } while (0)
+        
 /* @brief Throws an itk::Exception and stores the error in EMH. */
-#define TC_REPORT(MSG)                                                                                                 \
-    {                                                                                                                  \
-        EMH_store_error_s1(EMH_severity_error, ITK_CUSTOM_ERROR, MSG);                                                 \
-        TC_write_syslog("%s ERROR: %s\n", LOG_PREFIX, MSG);                                                            \
-        throw itk::Exception(ITK_CUSTOM_ERROR, MSG);                                                                   \
-    }
+#define TC_REPORT(MSG, ...)                                                                                            \
+    do {                                                                                                               \
+        TC_write_syslog("%s ERROR: " MSG "\n", LOG_PREFIX, ##__VA_ARGS__);                                             \
+        int _size = std::snprintf(nullptr, 0, MSG, ##__VA_ARGS__) + 1;                                                 \
+        std::vector<char> _buf(_size);                                                                                 \
+        std::snprintf(_buf.data(), _size, MSG, ##__VA_ARGS__);                                                         \
+        std::string _formattedMsg(_buf.data());                                                                        \
+        EMH_store_error_s1(EMH_severity_error, ITK_CUSTOM_ERROR, _formattedMsg.c_str());                               \
+        throw itk::Exception(ITK_CUSTOM_ERROR, _formattedMsg);                                                         \
+    } while (0)
+
+/* @brief Logs a message to the Teamcenter syslog. */
+#define TC_LOG(MSG, ...)                                                                                               \
+    do {                                                                                                               \
+        TC_write_syslog("%s INFO: " MSG "\n", LOG_PREFIX, ##__VA_ARGS__);                                             \
+    } while (0)
 
 /* @brief Top-level catch block for ITK functions. */
 #define TC_CATCH(DEFAULT_STAT)                                                                                         \
