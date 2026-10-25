@@ -42,12 +42,12 @@ void RegisterExtensions()
         if (method.id != nullptr)
         {
             TC_CALL(METHOD_add_action(method, ext.phase, ext.function, nullptr));
-            TC_write_syslog("%s Registered extension: %s on %s (%d)\n", LOG_PREFIX, ext.methodName, ext.typeName,
+            TC_LOG("Registered extension: %s on %s (%d)", ext.methodName, ext.typeName,
                             ext.phase);
         }
         else
         {
-            TC_write_syslog("%s WARNING: Method %s not found on type %s\n", LOG_PREFIX, ext.methodName, ext.typeName);
+            TC_LOG("WARNING: Method %s not found on type %s", ext.methodName, ext.typeName);
         }
     }
 }
@@ -57,11 +57,11 @@ int pre_save_item_action(METHOD_message_t* msg, va_list args)
 {
     try
     {
-        TC_write_syslog("%s Running %s...\n", LOG_PREFIX, __FUNCTION__);
+        TC_LOG("Running %s...", __FUNCTION__);
 
         // Business logic here...
 
         return ITK_ok;
     }
-    TC_CATCH(ITK_ok)
+    TC_CATCH(ITK_ok);
 }

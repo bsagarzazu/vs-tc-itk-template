@@ -26,14 +26,14 @@ int InitModule(int* decision, va_list args)
     *decision = ALL_CUSTOMIZATIONS;
     try
     {
-        TC_write_syslog("\n%s Initializing Custom Module: $projectname$ \n", LOG_PREFIX);
+        TC_LOG("Initializing Custom Module: $projectname$");
 
         RegisterHandlers();
         RegisterExtensions();
 
         return ITK_ok;
     }
-    TC_CATCH(ITK_ok)
+    TC_CATCH(ITK_ok);
 }
 
 extern "C" DLLAPI int $safeprojectname$_register_callbacks()
