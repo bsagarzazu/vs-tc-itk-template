@@ -29,12 +29,16 @@
     <ClInclude Include="include\Handlers.h" />
     <ClInclude Include="include\ItkHelpers.hxx" />
     <ClInclude Include="include\ItkUtils.h" />
+    <ClInclude Include="include\Version.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
     <None Include=".clang-tidy" />
     <None Include=".editorconfig" />
     <None Include="Teamcenter.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\VersionInfo.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -88,3 +88,6 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Temporary files created by the VS resource editor
+[Rr][Cc][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]

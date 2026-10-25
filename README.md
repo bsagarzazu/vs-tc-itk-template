@@ -15,6 +15,7 @@ No more copy-pasting, renaming and fixing paths from old projects. Setup a clean
 - **Hybrid path resolution**: Automatic dependency detection for local development or server environments.
 - **Dynamic headers**: Automated license and project information headers using Visual Studio template variables.
 - **Code quality**: Pre-configured `Clang-Format` and `Clang-Tidy` configured to ignore third-party headers.
+- **Versioning**: Edit `include/Version.h` to update your DLL version, and it will automatically reflect in the Teamcenter syslog and in the Windows DLL properties.
 
 > **Note**: Analysis is set to manual mode in the Property Sheet to maintain build performance. Run it on-demand via _Analyze -> Run Code Analysis_.
 

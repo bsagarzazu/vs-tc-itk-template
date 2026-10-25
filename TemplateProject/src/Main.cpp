@@ -17,16 +17,17 @@
 #include "Extensions.h"
 #include "Handlers.h"
 #include "ItkHelpers.hxx"
+#include "Version.h"
 
-#include <tccore/custom.h>
 #include <ict/ict_userservice.h>
+#include <tccore/custom.h>
 
 int InitModule(int* decision, va_list args)
 {
     *decision = ALL_CUSTOMIZATIONS;
     try
     {
-        TC_LOG("Initializing Custom Module: $projectname$");
+        TC_LOG("Initializing custom module: $projectname$ v%s", VERSION_VALUE);
 
         RegisterHandlers();
         RegisterExtensions();
